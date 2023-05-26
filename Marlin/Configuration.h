@@ -126,7 +126,14 @@
 //#define BLUETOOTH
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "Ender-3 Pro"
+
+
+//#######################################################################
+//AMMMA Change Printer Name to Show Build Details
+//#define CUSTOM_MACHINE_NAME "Ender-3 Pro"
+#define CUSTOM_MACHINE_NAME "AME3P260523A"
+//End of Comment
+//########################################################################
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -1347,7 +1354,7 @@
 //#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 //REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
 //End of Comment			 
-#########################################################################################				
+//#########################################################################################				
 
 // Force the use of the probe for Z-axis homing
 //#################################################################################################
@@ -1420,7 +1427,7 @@
 #define BLTOUCH
 //REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
 //End of Comment
-##################################################################																 
+//##################################################################																 
 
 /**
  * MagLev V4 probe by MDD
