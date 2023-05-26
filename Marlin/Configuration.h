@@ -765,7 +765,12 @@
  *
  * With this option disabled, bang-bang will be used. BED_LIMIT_SWITCHING enables hysteresis.
  */
-//#define PIDTEMPBED
+//##################################################################################################################
+//AMMMA 26-MAY-2023 Uncomment below line
+#define PIDTEMPBED
+//REF https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration-h-marlin-2-setup-part-2/
+//End of Comment																							
+//##################################################################################################################				
 
 #if ENABLED(PIDTEMPBED)
   //#define MIN_BED_POWER 0
@@ -1337,10 +1342,22 @@
  * The probe replaces the Z-MIN endstop and is used for Z homing.
  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
  */
-#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+//####################################################################################### 
+//AMMMA 26-MAY-2023 - Bltouch - comment below line, BLTOCUH Connected to its own port
+//#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+//REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+//End of Comment			 
+#########################################################################################				
 
 // Force the use of the probe for Z-axis homing
-//#define USE_PROBE_FOR_Z_HOMING
+//#################################################################################################
+//AMMMA 26-MAY-2023 - Bltouch - uncomment below line, BLTOCUH Connected to its own port
+//Uncomment Below line
+//will be execlusive for Probe to define z min
+#define USE_PROBE_FOR_Z_HOMING
+//REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+//End of Comment
+//#################################################################################################							 
 
 /**
  * Z_MIN_PROBE_PIN
@@ -1397,7 +1414,13 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+
+//################################################################
+//AMMMA 26-MAY-2023 - Uncommenting below line for adding BLTOUCH
+#define BLTOUCH
+//REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+//End of Comment
+##################################################################																 
 
 /**
  * MagLev V4 probe by MDD
@@ -1549,7 +1572,15 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+
+//###################################################################															   
+//AMMMA 26-OCT-2023 - Modifying the below figure to match the mount
+//#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { -42, -10, 0 }
+//REF https://www.thingiverse.com/thing:3003725
+//REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+//End of comment
+//####################################################################											 
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1843,7 +1874,13 @@
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  */
-//#define FILAMENT_RUNOUT_SENSOR
+
+//###############################################################################################################################																	
+//AMMMA 26-MAY-2023 - uncomment below line for Enabling Smart BTT Sensor
+#define FILAMENT_RUNOUT_SENSOR
+//REF https://www.makenprint.uk/3d-printing/3d-printing-reviews/3d-printer-accessory-reviews/btt-smart-filament-sensor-guide/
+//End of Comment
+//################################################################################################################################																															 
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
   #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
@@ -1895,13 +1932,24 @@
   // After a runout is detected, continue printing this length of filament
   // before executing the runout script. Useful for a sensor at the end of
   // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
-  //#define FILAMENT_RUNOUT_DISTANCE_MM 25
+
+//#########################################################################	
+  //AMMMA 26-MAY-2023 - Uncomment below line for BBT Smart Sensor Setup
+  #define FILAMENT_RUNOUT_DISTANCE_MM 25
+  //End of Comment
+//#########################################################################
+
 
   #ifdef FILAMENT_RUNOUT_DISTANCE_MM
     // Enable this option to use an encoder disc that toggles the runout pin
     // as the filament moves. (Be sure to set FILAMENT_RUNOUT_DISTANCE_MM
     // large enough to avoid false positives.)
-    //#define FILAMENT_MOTION_SENSOR
+    //#############################################################################################################################																	
+	//AMMMA 26-MAY-2023 Uncomment Below line for BTT Smart Sensor setup
+    #define FILAMENT_MOTION_SENSOR
+    //REF https://www.makenprint.uk/3d-printing/3d-printing-reviews/3d-printer-accessory-reviews/btt-smart-filament-sensor-guide/
+    //End of Comment
+    //#############################################################################################################################																																 
 
     #if ENABLED(FILAMENT_MOTION_SENSOR)
       //#define FILAMENT_SWITCH_AND_MOTION
@@ -1986,16 +2034,34 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
-//#define AUTO_BED_LEVELING_UBL
-#define MESH_BED_LEVELING
+//################################################################################################################
+//AMMMA 26-MAY-2023 - Bltouch Sensor - Enabling Bilinear
+#define AUTO_BED_LEVELING_BILINEAR
+//End of Comment				   
+//https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration-h-marlin-2-setup-part-2/
+//End of Comment
+//################################################################################################################
 
+//#define AUTO_BED_LEVELING_UBL
+//################################################################################################################
+//AMMMA 26-MAY-2023 - Commenting below line				   
+//define MESH_BED_LEVELING
+//https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration-h-marlin-2-setup-part-2/
+//End of Comment				
+//################################################################################################################
 /**
  * Normally G28 leaves leveling disabled on completion. Enable one of
  * these options to restore the prior leveling state or to always enable
  * leveling immediately after G28.
  */
-//#define RESTORE_LEVELING_AFTER_G28
+
+//###################################################################################################################									
+//AMMMA 26-MAY-2023 Uncomment below line
+#define RESTORE_LEVELING_AFTER_G28
+//REF https://all3dp.com/2/how-to-set-up-marlin-for-auto-bed-leveling/
+//REF https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration-h-marlin-2-setup-part-2/
+//End of Comment
+//###################################################################################################################									
 //#define ENABLE_LEVELING_AFTER_G28
 
 /**
@@ -2072,7 +2138,12 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 5
+  //###################################################################################################################
+  //AMMMA 26-MAY-2023 - Adjust the points from 5 to 9 in next line
+  #define GRID_MAX_POINTS_X 9
+  //REF https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration-h-marlin-2-setup-part-2/
+  //End Of Comment
+//###################################################################################################################																													  
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -2231,7 +2302,13 @@
  * - Allows Z homing only when XY positions are known and trusted.
  * - If stepper drivers sleep, XY homing may be required again before Z homing.
  */
-//#define Z_SAFE_HOMING
+
+//###########################################################################################################################									  
+//AMMMA 26-MAY-2023 - Uncomment below line
+#define Z_SAFE_HOMING
+//REF https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration-h-marlin-2-setup-part-2/
+//End of Comment																					
+//###########################################################################################################################
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing

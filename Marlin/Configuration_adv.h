@@ -951,7 +951,13 @@
 
   // Safety: The probe needs time to recognize the command.
   //         Minimum command delay (ms). Enable and increase if needed.
-  //#define BLTOUCH_DELAY 500
+
+  //##########################################################################################################################																					  
+  //AMMMA 26-MAY-2023 - Uncomment below line for BLTOUCH and change the value from 500 to 200
+  #define BLTOUCH_DELAY 200
+  //REF https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration_adv-h-marlin-2-setup-part-3/
+  //End of Comment
+  //##########################################################################################################################																														  
 
   /**
    * Settings for BLTOUCH Classic 1.2, 1.3 or BLTouch Smart 1.0, 2.0, 2.2, 3.0, 3.1, and most clones:
@@ -959,7 +965,12 @@
 
   // Feature: Switch into SW mode after a deploy. It makes the output pulse longer. Can be useful
   //          in special cases, like noisy or filtered input configurations.
-  //#define BLTOUCH_FORCE_SW_MODE
+  //########################################################################################################################  
+  //AMMMA 26-MAY-2023 - Uncomment below line for BLTOUCH
+  #define BLTOUCH_FORCE_SW_MODE
+  //REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+  //End of Comment
+   //########################################################################################################################																   
 
   /**
    * Settings for BLTouch Smart 3.0 and 3.1
@@ -998,7 +1009,13 @@
    *
    * Set the default state here, change with 'M401 S' or UI, use M500 to save, M502 to reset.
    */
-  //#define BLTOUCH_HS_MODE true
+
+  //########################################################################################
+  //AMMMA 26-MAY-2023 - Recommend to uncomment below line to speed up with BLTOUCH
+  #define BLTOUCH_HS_MODE true
+  //REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+  //End Of Comment
+  //########################################################################################
 
   #ifdef BLTOUCH_HS_MODE
     // The probe Z offset (M851 Z) is the height at which the probe triggers.
@@ -1481,14 +1498,24 @@
 //#define LCD_BACKLIGHT_TIMEOUT_MINS 1  // (minutes) Timeout before turning off the backlight
 
 #if HAS_BED_PROBE && EITHER(HAS_MARLINUI_MENU, HAS_TFT_LVGL_UI)
-  //#define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
+  //###########################################################################################################
+  //AMMMA 26-MAY-2023 Uncomment below line
+  #define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
+  //REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+  //End of Comment
+  //###########################################################################################################
   #if ENABLED(PROBE_OFFSET_WIZARD)
     /**
      * Enable to init the Probe Z-Offset when starting the Wizard.
      * Use a height slightly above the estimated nozzle-to-probe Z offset.
      * For example, with an offset of -5, consider a starting height of -4.
      */
-    //#define PROBE_OFFSET_WIZARD_START_Z -4.0
+	//#####################################################################################
+    //AMMMA 26-MAY-2023 - Uncomment below line for BLTOUCH
+    #define PROBE_OFFSET_WIZARD_START_Z -4.0
+    //REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+    //End of Comment
+	//#####################################################################################																 
 
     // Set a convenient position to do the calibration (probing point and nozzle/bed-distance)
     //#define PROBE_OFFSET_WIZARD_XY_POS { X_CENTER, Y_CENTER }
@@ -2207,8 +2234,17 @@
 #if ENABLED(BABYSTEPPING)
   //#define INTEGRATED_BABYSTEPPING         // Integration of babystepping into the Stepper ISR
   //#define EP_BABYSTEPPING                 // M293/M294 babystepping with EMERGENCY_PARSER support
-  //#define BABYSTEP_WITHOUT_HOMING
-  //#define BABYSTEP_ALWAYS_AVAILABLE       // Allow babystepping at all times (not just during movement)
+  
+  
+  //#############################################################################################################
+  //#define INTEGRATED_BABYSTEPPING         // EXPERIMENTAL integration of babystepping into the Stepper ISR
+  //AMMMA 26-MAY-2023 Remove Comment from below two lines
+  #define BABYSTEP_WITHOUT_HOMING
+  #define BABYSTEP_ALWAYS_AVAILABLE       // Allow babystepping at all times (not just during movement).
+  //https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration_adv-h-marlin-2-setup-part-3/
+  //End of Comment
+  //#############################################################################################################
+  
   //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
   //#define BABYSTEP_INVERT_Z               // Enable if Z babysteps should go the other way
   //#define BABYSTEP_MILLIMETER_UNITS       // Specify BABYSTEP_MULTIPLICATOR_(XY|Z) in mm instead of micro-steps
@@ -2225,9 +2261,20 @@
     #endif
   #endif
 
-  //#define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
+	//########################################################################################									
+    //AMMMA 26-MAY-2023 Uncomment below line
+  #define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
+  //REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+  //End of Comment
+  //########################################################################################
 
-  //#define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
+
+  //########################################################################################
+  //AMMMA 26-MAY-2023 Uncomment below line
+  #define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
+  //REF https://3dprintscape.com/bltouch-on-skr-mini-install-guide/
+  //End of Comment
+  //########################################################################################
   //#define BABYSTEP_GLOBAL_Z               // Combine M424 Z and Babystepping
 
   #if EITHER(BABYSTEP_ZPROBE_OFFSET, BABYSTEP_GLOBAL_Z)
@@ -2337,9 +2384,20 @@
  * Repeatedly attempt G29 leveling until it succeeds.
  * Stop after G29_MAX_RETRIES attempts.
  */
-//#define G29_RETRY_AND_RECOVER
+
+//#######################################################################################################################										
+//AMMMA 26-MAY-2023 Uncomment below line
+#define G29_RETRY_AND_RECOVER
+//REF https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration_adv-h-marlin-2-setup-part-3/
+//End of Comment
+//#######################################################################################################################
 #if ENABLED(G29_RETRY_AND_RECOVER)
-  #define G29_MAX_RETRIES 3
+  //######################################################################################################################
+  //AMMMA 26-MAY-2023 - Changing below value from 3 to 4
+  #define G29_MAX_RETRIES 4
+  //REF https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration_adv-h-marlin-2-setup-part-3/
+  //End of Comment
+  //######################################################################################################################																														  
   #define G29_HALT_ON_FAILURE
   /**
    * Specify the GCODE commands that will be executed when leveling succeeds,
@@ -2828,7 +2886,12 @@
   //#define PAUSE_REHEAT_FAST_RESUME              // Reduce number of waits by not prompting again post-timeout before continuing.
 
   #define PARK_HEAD_ON_PAUSE                      // Park the nozzle during pause and filament change.
-  #define HOME_BEFORE_FILAMENT_CHANGE             // If needed, home before parking for filament change
+  //############################################################################################################################
+  //AMMMA 26-MAY-2023 Comment below line to prevent hotend crash into print incase of filement runout
+  //#define HOME_BEFORE_FILAMENT_CHANGE           // If needed, home before parking for filament change
+  //REF https://www.makenprint.uk/3d-printing/3d-printing-reviews/3d-printer-accessory-reviews/btt-smart-filament-sensor-guide/
+  //End of Comment         // If needed, home before parking for filament change
+  //############################################################################################################################																														   
 
   #define FILAMENT_LOAD_UNLOAD_GCODES             // Add M701/M702 Load/Unload G-codes, plus Load/Unload in the LCD Prepare menu.
   //#define FILAMENT_UNLOAD_ALL_EXTRUDERS         // Allow M702 to unload all extruders above a minimum target temp (as set by M302)
@@ -3239,7 +3302,13 @@
    * M912 - Clear stepper driver overtemperature pre-warn condition flag.
    * M122 - Report driver parameters (Requires TMC_DEBUG)
    */
-  //#define MONITOR_DRIVER_STATUS
+
+  //###############################################################################################################################										
+  //AMMMA 26-MAY-2023 - Uncomment below line
+  #define MONITOR_DRIVER_STATUS
+  //REF https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-mini-e3-v2-configuration_adv-h-marlin-2-setup-part-3/
+  //End of Comment
+//###############################################################################################################################																													  
 
   #if ENABLED(MONITOR_DRIVER_STATUS)
     #define CURRENT_STEP_DOWN     50  // [mA]
